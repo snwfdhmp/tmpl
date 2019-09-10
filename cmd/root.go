@@ -37,15 +37,12 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "tmpl",
 	Short: "Use go templating outside go",
-	Long: `Use go templating outside go
-  
-  Usage: tmpl <templateFile> <valueFile>`,
+	Long:  `Usage: tmpl <templateFile> <valueFile>`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 2 {
-			os.Stderr.WriteString("Error: missing arguments\n\n")
-			cmd.Usage()
+			os.Stderr.WriteString(fmt.Sprintf("Error: missing arguments\n\n%s\n", cmd.Long))
 			return
 		}
 		templateFile := args[0]
